@@ -1,5 +1,6 @@
 from fastapi import APIRouter, Depends, HTTPException, UploadFile, File
 from sqlalchemy.orm import Session
+from typing import List
 from app.core.database import get_db
 from app.models.models import User, Address
 from app.schemas.schemas import UserCreate, UserUpdate, UserResponse
@@ -8,6 +9,20 @@ import shutil
 from app.core.config import settings
 
 router = APIRouter()
+
+@router.get("/", response_model=List[UserResponse])
+async def get_all_users(db: Session = Depends(get_db)):
+    """Get all users with their addresses"""
+    users = db.query(User).all()
+    return users
+
+@router.get("/{user_id}", response_model=UserResponse)
+async def get_user(user_id: int, db: Session = Depends(get_db)):
+    """Get a specific user by ID"""
+    db_user = db.query(User).filter(User.id == user_id).first()
+    if not db_user:
+        raise HTTPException(status_code=404, detail="User not found")
+    return db_user
 
 
 @router.post("/", response_model=UserResponse)

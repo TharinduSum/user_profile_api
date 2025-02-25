@@ -7,12 +7,21 @@ class AddressBase(BaseModel):
     city: str
     country: str
 
+class AddressCreate(AddressBase):
+    pass
+
 class UserCreate(BaseModel):
     username: str
     first_name: str
     last_name: str
     occupation: str
     address: AddressBase
+
+class UserBase(BaseModel):
+    username: str
+    first_name: str
+    last_name: str
+    occupation: str
 
 class UserUpdate(BaseModel):
     first_name: Optional[str] = None
