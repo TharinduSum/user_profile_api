@@ -1,0 +1,33 @@
+# PyCharm
+.idea/
+
+# Virtual Environment
+.venv/
+
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Logs and temporary files
+*.log
+*.tmp
+
+# Environment variables and configuration
+.env
+config.py  # If this contains sensitive data, otherwise remove this line
+
+# Database files
+*.sqlite3
+
+# Uploads (user profile images)
+uploads/
+
+# Alembic migrations (optional, if you don't want to track them)
+alembic/
+
+# Dependency files
+pip-log.txt
+pip-delete-this-directory.txt
+
